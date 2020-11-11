@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "851419772795",
+    "firebase_url": "https://gupschedule-cdbca.firebaseio.com",
+    "project_id": "gupschedule-cdbca",
+    "storage_bucket": "gupschedule-cdbca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:851419772795:android:be3ed51c3cda59ea81efde",
+        "android_client_info": {
+          "package_name": "com.gupschedule"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "851419772795-pb78lqjqkgd7u3gqp9aegohafqnfceli.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLbLApMNuTalVVY3zO5shOEbgAaTNBeME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "851419772795-pb78lqjqkgd7u3gqp9aegohafqnfceli.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
