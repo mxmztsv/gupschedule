@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, Linking} from 'react-native';
 import styled from 'styled-components/native';
 import SubjectProgress from './SubjectProgress';
 
@@ -9,6 +9,17 @@ const ScheduleCard = ( { date, items }) => {
             <Card>
                 <Date>{date}</Date>
                 {items.map((item, index) =>
+                    <TouchableOpacity onPress={async () => {
+                        if (item.link) {
+                            // console.log(item.link)
+                            try {
+                                await Linking.openURL(item.link)
+                            } catch (e) {
+
+                            }
+                        }
+
+                    }}>
                 <ClassWrapper key = {index}>
                     {/*<Class>*/}
                         <InfoColumn>
@@ -25,7 +36,11 @@ const ScheduleCard = ( { date, items }) => {
 
                             </NumberRow>
                             <SubjectWrapper>
-                                <Subject ellipsizeMode = "tail" numberOfLines={2}>{item.subject}</Subject>
+                                {item.link ? (
+                                    <SubjectWithLink ellipsizeMode = "tail" numberOfLines={2}>{item.subject}</SubjectWithLink>
+                                ):(
+                                    <Subject ellipsizeMode = "tail" numberOfLines={2}>{item.subject}</Subject>
+                                )}
                             </SubjectWrapper>
                             <Teacher>{item.teacher}</Teacher>
                             <AddressRow>
@@ -36,7 +51,8 @@ const ScheduleCard = ( { date, items }) => {
                             </AddressRow>
                         </InfoColumn>
                     {/*</Class>*/}
-                </ClassWrapper>)}
+                </ClassWrapper>
+                    </TouchableOpacity>)}
             </Card>
         )
 }
@@ -105,7 +121,7 @@ const TimeWrapper = styled.View`
 const RoomWrapper = styled.View`
     background: #8b0401;
     padding: 0px 8px 2px 8px;
-    border-radius: 10px;
+    border-radius: 25px;
     align-items: center;
     justify-content: center;
     margin: 0 5px 0 0;
@@ -152,6 +168,13 @@ const Subject = styled.Text`
     font-weight: bold;
 `;
 
+const SubjectWithLink = styled.Text`
+    color: black;
+    text-decoration: underline;
+    font-size: 15px;
+    font-weight: bold;
+`;
+
 const Teacher = styled.Text`
     font-size: 12px;
     color: #7f7f7f;
@@ -169,10 +192,8 @@ font-size: 12px;
 `;
 
 const Room = styled.Text`
-
     font-size: 12px;
     color: white;
-
 `;
 
 const Time = styled.Text`

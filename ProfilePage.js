@@ -51,7 +51,7 @@ export default class ProfilePage extends Component{
                 maxAdContentRating: MaxAdContentRating.PG,
 
                 // Indicates that you want your content treated as child-directed for purposes of COPPA.
-                tagForChildDirectedTreatment: true,
+                tagForChildDirectedTreatment: false,
 
                 // Indicates that you want the ad request to be handled in a
                 // manner suitable for users under the age of consent.
@@ -100,13 +100,12 @@ export default class ProfilePage extends Component{
                         <AboutWrapper>
                             <AboutBox>
                                 <About>Неофициальное приложение для студентов Санкт-Петербургского Гуманитарного университета профсоюзов.
-                                    Вся предоставленная информация взята с сайта gup.ru.
-                                    О некорректной работе приложения сообщать по адресу</About>
-                                <TouchableOpacity onPress={async () => {
-                                    await Linking.openURL('mailto:zaytsevmaxim.official@gmail.com')
-                                }}>
-                                <Mail>zaytsevmaxim.official@gmail.com</Mail>
-                                </TouchableOpacity>
+                                    Вся предоставленная информация взята с сайта gup.ru.</About>
+                                {/*<TouchableOpacity onPress={async () => {*/}
+                                {/*    await Linking.openURL('mailto:zaytsevmaxim.official@gmail.com')*/}
+                                {/*}}>*/}
+                                {/*<Mail>zaytsevmaxim.official@gmail.com</Mail>*/}
+                                {/*</TouchableOpacity>*/}
                             </AboutBox>
                             <AuthorWrapper>
                                 <About>От студента ❤ студентам</About>

@@ -6,10 +6,10 @@ export default function AdsBanner() {
     admob()
         .setRequestConfiguration({
             // Update all future requests suitable for parental guidance
-            maxAdContentRating: MaxAdContentRating.PG,
+            maxAdContentRating: MaxAdContentRating.T,
 
             // Indicates that you want your content treated as child-directed for purposes of COPPA.
-            tagForChildDirectedTreatment: true,
+            tagForChildDirectedTreatment: false,
 
             // Indicates that you want the ad request to be handled in a
             // manner suitable for users under the age of consent.
@@ -25,7 +25,7 @@ export default function AdsBanner() {
 
     return (
         <BannerWrapper>
-                <BannerAd unitId={adUnitId} size={BannerAdSize.FULL_BANNER}/>
+                {/*<BannerAd unitId={adUnitId} size={BannerAdSize.BANNER}/>*/}
         </BannerWrapper>
     );
 }

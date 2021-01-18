@@ -1,6 +1,5 @@
 import * as cheerio from 'cheerio-without-node-native';
 import axios from 'axios';
-import {add} from 'react-native-reanimated';
 
 export async function getSchedule() {
     try {
@@ -17,7 +16,7 @@ export async function getSchedule() {
 
         const rowData = [{
             date: $('.shedule__day-name').first().text().trim(),
-            items: []
+            items: [],
         }];
 
 
@@ -43,7 +42,7 @@ export async function getSchedule() {
                     rowData.push({
                         date: $(el).text().trim(),
                         items: [],
-                    })
+                    });
                     classCount = 0;
                     day++;
                 } else {
@@ -55,18 +54,42 @@ export async function getSchedule() {
                     // console.log($(el).children().text())
 
                     function findItemByLabel(el, label) {
-                        const data = []
+                        const data = [];
                         $(el).children().map((r, e) => {
-                            const lbl = $(e).data('label')
+                            const lbl = $(e).data('label');
+                            // const a = $(e).children().attr('href');
+                            // console.log('link: ', a);
+
                             if (lbl === label) {
                                 // console.log(lbl, $(e).html())
-                                data.push($(e).text().trim())
+                                data.push($(e).text().trim());
                                 // return $(e).html()
                                 // console.log("test")
                             }
-                        })
+                        });
                         // console.log(data)
-                        return data
+                        return data;
+                    }
+
+                    function findRegistrationLink(el) {
+                        const data = [];
+                        $(el).children().map((r, e) => {
+                            const lbl = $(e).data('label');
+                            // const a = $(e).children().attr('href');
+                            // console.log('link: ', a);
+
+                            if (lbl === 'Предмет:') {
+                                data.push($(e).children().attr('href'));
+                                // const link = $(e).children().attr('href');
+                                // if (link !== undefined) {
+                                //     console.log('link: ', link);
+                                //     return link
+                                // } else return null
+
+                            }
+                        });
+                        // console.log(data)
+                        return data[0];
                     }
 
                     // findItemByLabel($(el), 'Предмет:')
@@ -77,15 +100,18 @@ export async function getSchedule() {
                     // console.log($('td[data-label="Пара:"]').text())
                     // console.log($(el).html(),findItemByLabel($(el), 'Пара:'))
 
-                    const number = findItemByLabel($(el), 'Пара:')
-                    const time =  findItemByLabel($(el), 'Время:')
-                    const subject = findItemByLabel($(el), 'Предмет:')
-                    const type = findItemByLabel($(el), 'Тип:')
-                    const teacher = findItemByLabel($(el), 'Преподаватель:')
-                    const address = findItemByLabel($(el), 'Адрес:')
-                    const room = findItemByLabel($(el), 'Аудитория:')
+                    const number = findItemByLabel($(el), 'Пара:');
+                    const time = findItemByLabel($(el), 'Время:');
+                    const subject = findItemByLabel($(el), 'Предмет:');
+                    const type = findItemByLabel($(el), 'Тип:');
+                    const teacher = findItemByLabel($(el), 'Преподаватель:');
+                    const address = findItemByLabel($(el), 'Адрес:');
+                    const room = findItemByLabel($(el), 'Аудитория:');
+                    const regLink = findRegistrationLink($(el))
 
-                    console.log((subject.length) ? subject : 'empty')
+                    console.log('regLink: ', regLink);
+
+                    // console.log((subject.length) ? subject : 'empty');
 
 
                     // console.log(rowData[0]['items'][classCount - 0]['subject'])
@@ -99,23 +125,22 @@ export async function getSchedule() {
                         teacher: teacher,
                         address: (address.length) ? address : addressPrev,
                         room: (room.length) ? room : roomPrev,
-                    })
+                        link: regLink,
+                    });
 
-                    numberPrev = number
-                    timePrev =  time
-                    subjectPrev = subject
-                    typePrev = type
-                    teacherPrev = teacher
-                    addressPrev = address
-                    roomPrev = room
+                    numberPrev = number;
+                    timePrev = time;
+                    subjectPrev = subject;
+                    typePrev = type;
+                    teacherPrev = teacher;
+                    addressPrev = address;
+                    roomPrev = room;
 
-                    classCount++
+                    classCount++;
                 }
 
-            })
+            });
         }
-
-
 
 
         const scheduleRaw = [];
@@ -124,37 +149,35 @@ export async function getSchedule() {
         const schedule = scheduleRaw.slice(6);
 
 
-        const weekDays = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"];
+        const weekDays = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
 
 
         function isDate(str) {
-            for(let el of weekDays) {
+            for (let el of weekDays) {
                 if (str.indexOf(el.toString()) > -1) {
                     return true;
                 }
-            };
+            }
+            ;
             return false;
         }
-
-
 
 
         const items = [];
         const dates = [];
 
 
-
         const data = [{
-            data: rowData
-        }]
+            data: rowData,
+        }];
 
 
         return data;
     } catch (e) {
-        console.log(e)
+        console.log(e);
     }
 
-    return  undefined
+    return undefined;
 
 
 }
