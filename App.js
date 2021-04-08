@@ -154,18 +154,19 @@ export default function App() {
 
             signIn: async (login, pass) => {
                 try {
-                    const studentName = await auth(login, pass);
-                    console.log('studentName: ', studentName);
-
-                    try {
-                        await AsyncStorage.setItem('studentName', studentName);
-                        await AsyncStorage.setItem('login', login);
-                        await AsyncStorage.setItem('pass', pass);
-                    } catch(err) {
-                        console.error(err);
-                    }
-
-                    dispatch({ type: 'LOGIN', id: login, token: studentName });
+                    // const studentName = await auth(login, pass);
+                    await auth(login, pass);
+                    // console.log('studentName: ', studentName);
+                    //
+                    // try {
+                    //     await AsyncStorage.setItem('studentName', studentName);
+                    //     await AsyncStorage.setItem('login', login);
+                    //     await AsyncStorage.setItem('pass', pass);
+                    // } catch(err) {
+                    //     console.error(err);
+                    // }
+                    //
+                    // dispatch({ type: 'LOGIN', id: login, token: studentName });
 
 
 
@@ -173,8 +174,20 @@ export default function App() {
 
                         const info = await getInfo()
 
+                        console.log('studentName: ', info['name']);
+
+                        try {
+                            await AsyncStorage.setItem('studentName', info['name']);
+                            await AsyncStorage.setItem('login', login);
+                            await AsyncStorage.setItem('pass', pass);
+                        } catch(err) {
+                            console.error(err);
+                        }
+
+                        dispatch({ type: 'LOGIN', id: login, token: info['name'] });
+
                         await analytics().logEvent('authorization', {
-                            studentName: await AsyncStorage.getItem('studentName'),
+                            studentName:info['name'],
                             specialty: info['specialty'],
                             year: info['year'],
                             group: info['group'],
@@ -184,7 +197,7 @@ export default function App() {
                         await analytics().setUserId(info['number'])
                         await analytics().setSessionTimeoutDuration(180000)
                         await analytics().setUserProperties({
-                            ["Имя"]: await AsyncStorage.getItem('studentName'),
+                            ["Имя"]: info['name'],
                             ["Специальность"]: info['specialty'],
                             ["Курс"]: info['year'],
                             ["Группа"]: info['group'],
@@ -197,7 +210,7 @@ export default function App() {
 
 
                 } catch (e) {
-                    // console.error( e.message );
+                    console.error( e.message );
                     Alert.alert("Что-то пошло не так", e.message,[
                         {text: "Понимаю"}
                     ])

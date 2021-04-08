@@ -45,21 +45,21 @@ export default class ProfilePage extends Component{
         this.setState({info})
 
 
-        admob()
-            .setRequestConfiguration({
-                // Update all future requests suitable for parental guidance
-                maxAdContentRating: MaxAdContentRating.PG,
-
-                // Indicates that you want your content treated as child-directed for purposes of COPPA.
-                tagForChildDirectedTreatment: false,
-
-                // Indicates that you want the ad request to be handled in a
-                // manner suitable for users under the age of consent.
-                tagForUnderAgeOfConsent: true,
-            })
-            .then(() => {
-                // Request config successfully set!
-            });
+        // admob()
+        //     .setRequestConfiguration({
+        //         // Update all future requests suitable for parental guidance
+        //         maxAdContentRating: MaxAdContentRating.PG,
+        //
+        //         // Indicates that you want your content treated as child-directed for purposes of COPPA.
+        //         tagForChildDirectedTreatment: false,
+        //
+        //         // Indicates that you want the ad request to be handled in a
+        //         // manner suitable for users under the age of consent.
+        //         tagForUnderAgeOfConsent: true,
+        //     })
+        //     .then(() => {
+        //         // Request config successfully set!
+        //     });
 
         await analytics().logScreenView({
             screen_name: "Профиль",
@@ -80,6 +80,7 @@ export default class ProfilePage extends Component{
                 <Scroller>
                 <StatusBar backgroundColor="#f3f3f3" barStyle={'dark-content'} />
                 <PageTitle TabTitle={this.state.TabTitle} studentName={this.state.studentName}/>
+                {/*<PageTitle TabTitle={this.state.TabTitle} studentName="Иннокентий Петрович Миронов"/>*/}
                 <Container>
                     <ProfileCard studentName={this.state.studentName} info={this.state.info}/>
 
@@ -88,8 +89,8 @@ export default class ProfilePage extends Component{
                     {/*<Card>*/}
                     {/*    <Avatar source={{uri: 'https://edu.gup.ru/pluginfile.php/93636/user/icon/boost/f1?rev=5526329'}}/>*/}
                     {/*    <DescriptionWrapper>*/}
-                    {/*        <Description>Иннокентий Петрович Сидоров</Description>*/}
-                    {/*        <Description>Специальность: 45.03.02 Лингвистика. БАКАЛАВР</Description>*/}
+                    {/*        <Description>Иннокентий Петрович Миронов</Description>*/}
+                    {/*        <Description>Специальность: 51.03.01 Культурология. БАКАЛАВР</Description>*/}
                     {/*        <Description>Курс: 1</Description>*/}
                     {/*        <Description>Группа: 12345</Description>*/}
                     {/*        <Description>Личный номер: 12345</Description>*/}
@@ -109,7 +110,7 @@ export default class ProfilePage extends Component{
                             </AboutBox>
                             <AuthorWrapper>
                                 <About>От студента ❤ студентам</About>
-                                <About>Версия 1.0.0</About>
+                                <About>Версия 1.0.1</About>
                                 {/*<AuthorRow>*/}
                                 {/*    <Avatar source={{uri: 'https://instagram.fhen2-1.fna.fbcdn.net/v/t51.2885-19/s320x320/97016074_258203348871108_2921080461432193024_n.jpg?_nc_ht=instagram.fhen2-1.fna.fbcdn.net&_nc_ohc=PrQyASxilP8AX_b9fw2&oh=8a1775ffbf5061c1c0fc7f53028c17b1&oe=5F9A21FE'}}/>*/}
                                 {/*    <AuthorName onPress={() => Linking.openURL('https://www.instagram.com/russian_hustla/')}>Максим Зайцев</AuthorName>*/}

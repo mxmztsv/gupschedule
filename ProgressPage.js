@@ -43,10 +43,12 @@ export default class ProgressPage extends Component{
                             <Scroller
                                 sections={this.state.progressTable}
                                 // sections={DATA}
+                                // sections={DATA}
                                 keyExtractor={(item, index) => index}
                                 renderItem={({ item }) => <SubjectProgress {...item}/>}
                                 // renderItem={item.map((item, index) => <SubjectProgress {...item}/>)}
                                 ListHeaderComponent={<PageTitle TabTitle={this.state.TabTitle} studentName={this.state.studentName}/>}
+                                // ListHeaderComponent={<PageTitle TabTitle={this.state.TabTitle} studentName="Иннокентий Петрович Миронов"/>}
                                 refreshing={this.state.refreshing}
                                 onRefresh={this.handleRefresh}
                             />
@@ -154,39 +156,39 @@ const DATA = [
     {
         data: [
             {
-                date: '21.10.2019',
-                title: 'История лингвистических учений',
-                type: 'Аттестационная ведомость (баллы)',
-                points: '26'
+                date: '21.12.2021',
+                title: 'История',
+                type: 'Экзаменационная ведомость',
+                points: '4'
             },
             {
-                date: '20.09.2020',
+                date: '15.12.2021',
                 title: 'История культуры Санкт-Петербурга',
                 type: 'Зачетная ведомость',
                 points: 'Зач'
             },
             {
-                date: '20.09.2020',
+                date: '11.10.2021',
                 title: 'Английский язык',
-                type: 'Зачетная ведомость',
+                type: 'Аттестационная ведомость (баллы)',
                 points: '30'
             },
             {
-                date: '20.09.2020',
+                date: '30.09.2021',
                 title: 'Математика',
-                type: 'Зачетная ведомость',
+                type: 'Аттестационная ведомость (баллы)',
                 points: '25'
             },
             {
-                date: '20.09.2020',
+                date: '2.09.2021',
                 title: 'Информатика',
-                type: 'Зачетная ведомость',
+                type: 'Аттестационная ведомость (баллы)',
                 points: '22'
             },
             {
-                date: '20.09.2020',
-                title: 'Математика',
-                type: 'Зачетная ведомость',
+                date: '20.09.2021',
+                title: 'Экономика',
+                type: 'Аттестационная ведомость (баллы)',
                 points: '22'
             },
             {

@@ -43,9 +43,11 @@ export default class ViolationPage extends Component{
                         (
                             <Scroller
                                 sections={this.state.violationTable}
+                                // sections={DATA}
                                 keyExtractor={(item, index) => index}
                                 renderItem={({ item }) => <ViolationCard {...item}/>}
                                 ListHeaderComponent={<PageTitle TabTitle={this.state.TabTitle} studentName={this.state.studentName}/>}
+                                // ListHeaderComponent={<PageTitle TabTitle={this.state.TabTitle} studentName="Иннокентий Петрович Миронов"/>}
                                 refreshing={this.state.refreshing}
                                 onRefresh={this.handleRefresh}
                             />
@@ -94,38 +96,38 @@ const Screen = styled.View`
 //     {
 //         data: [
 //             {
-//                 date: '11.03.2020',
-//                 title: 'За активное участие в организации и проведении мероприятий, проводимых в Университете',
-//                 type: 'Благодарность',
-//                 number: '247',
-//                 level: 'факультету'
-//             },
-//             {
-//                 date: '1.02.2020',
-//                 title: 'За активную работу',
-//                 type: 'Благодарность',
-//                 number: '112',
-//                 level: 'факультету'
-//             },
-//             {
-//                 date: '17.02.2020',
-//                 title: 'За активное участие в творческой жизни факультета и Университета',
-//                 type: 'Благодарность',
-//                 number: '57',
-//                 level: 'факультету'
-//             },
-//             {
-//                 date: '20.02.2020',
-//                 title: 'За активное участие в организации и проведении мероприятий, проводимых в Университете',
-//                 type: 'Благодарность',
-//                 number: '321',
-//                 level: 'факультету'
-//             },
-//             {
-//                 date: '19.01.2020',
+//                 date: '5.03.2021',
 //                 title: 'За активное участие в организации и проведении мероприятий, проводимых в Университете',
 //                 type: 'Благодарность',
 //                 number: '123',
+//                 level: 'факультету'
+//             },
+//             {
+//                 date: '17.02.2021',
+//                 title: 'За активную работу',
+//                 type: 'Благодарность',
+//                 number: '357',
+//                 level: 'факультету'
+//             },
+//             {
+//                 date: '12.02.2021',
+//                 title: 'За активное участие в творческой жизни факультета и Университета',
+//                 type: 'Благодарность',
+//                 number: '85',
+//                 level: 'факультету'
+//             },
+//             {
+//                 date: '31.12.2020',
+//                 title: 'Просто потому что молодец',
+//                 type: 'Благодарность',
+//                 number: '228',
+//                 level: 'факультету'
+//             },
+//             {
+//                 date: '19.11.2020',
+//                 title: 'За активное участие в организации и проведении мероприятий, проводимых в Университете',
+//                 type: 'Благодарность',
+//                 number: '12',
 //                 level: 'факультету'
 //             },
 //             {

@@ -15,6 +15,7 @@ export async function getInfo() {
 
         // console.log($('table.text > tr > td > b').html())
 
+        let name;
         let specialty;
         let year;
         let group;
@@ -24,20 +25,22 @@ export async function getInfo() {
 
 
         $('table.text > tr').map((i, el) => {
+            if (i === 0) {
+                name = $(el).text().trim("")
+                console.log('name', name)
+            }
             if (i === 1) {
                 let str = $(el).text().trim("")
                 info = str.split("\n")
             }
-            // console.log(i)
-
         })
 
         const studentInfo = {
+            name: name.trim(),
             specialty: info[0].trim(),
             year: info[1].trim(),
             group: info[2].trim(),
             number: info[3].trim(),
-
         }
 
 

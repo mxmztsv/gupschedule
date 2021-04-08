@@ -1,5 +1,6 @@
 import * as cheerio from 'cheerio-without-node-native';
 import axios from 'axios';
+import {getInfo} from './ProfileController'
 
 
 export async function auth(login, pass) {
@@ -18,8 +19,14 @@ export async function auth(login, pass) {
 
         // console.log(response);
 
-        const $ = cheerio.load(response.data, {decodeEntities: false});
-        const name = $('.name').text().toString().trim().replace('  ', ' ');
+        // const $ = cheerio.load(response.data, {decodeEntities: false});
+        // const name = $('.name').text().toString().trim().replace('  ', ' ');
+
+        const info = await getInfo()
+
+        // console.log('studentName: ', info['name']);
+
+        const name = info['name']
         if (name) {
             console.log(name);
             return name;
