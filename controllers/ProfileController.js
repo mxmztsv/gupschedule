@@ -8,6 +8,8 @@ export async function getInfo() {
             url: `https://www.gup.ru/insider/student/vedomost/`,
         });
 
+        // console.log(response.data)
+
         let $ = cheerio.load(response.data, {decodeEntities: false});
 
 
